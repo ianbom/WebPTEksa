@@ -1,0 +1,10 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import {useState} from "react";
+const slides=[
+ {image:"/assets/liftco/hero-heli.jpg",alt:"Forklift HELI untuk operasional material handling",eyebrow:"PT LIFTCO INDO PERKASA",title:"Solusi Terintegrasi untuk Produktivitas Industri Anda",copy:"Distributor forklift dan peralatan industri dengan layanan penjualan, rental, servis, serta dukungan suku cadang."},
+ {image:"/assets/liftco/mantall-boom-350.png",alt:"Peralatan lifting MANTALL",eyebrow:"PENJUALAN & RENTAL",title:"Peralatan untuk Kebutuhan Material Handling dan Lifting",copy:"Jelajahi pilihan forklift, scissor lift, boom lift, dan peralatan industri dari brand yang didistribusikan Liftco."},
+ {image:"/assets/liftco/service-forklift.png",alt:"Perawatan dan servis forklift",eyebrow:"LAYANAN AFTER-SALES",title:"Dukungan Servis dan Suku Cadang untuk Unit Anda",copy:"Liftco menyediakan layanan servis, perawatan, dan dukungan suku cadang untuk membantu kebutuhan operasional peralatan Anda."}
+];
+export function HomeHero(){const [active,setActive]=useState(0);const slide=slides[active];const step=(dir:number)=>setActive((active+dir+slides.length)%slides.length);return <section className="hero"><Image key={slide.image} className="hero-image" src={slide.image} alt={slide.alt} fill priority sizes="100vw"/><div className="hero-shade"/><div className="wrap hero-content"><span className="eyebrow">{slide.eyebrow}</span><h1>{slide.title}</h1><p>{slide.copy}</p><Link className="button button-yellow" href="/produk">Lihat Produk Kami <span>→</span></Link><div className="hero-controls" aria-label="Kontrol slide hero"><button onClick={()=>step(-1)} aria-label="Slide sebelumnya">←</button><div className="hero-dots">{slides.map((item,i)=><button key={item.eyebrow} onClick={()=>setActive(i)} aria-label={`Buka slide ${i+1}`} aria-pressed={active===i} className={active===i?"active":""}/>)}</div><button onClick={()=>step(1)} aria-label="Slide berikutnya">→</button></div></div></section>}

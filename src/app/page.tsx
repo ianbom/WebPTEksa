@@ -1,69 +1,9 @@
-import Image from "next/image";
-
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
-}
+import Image from "next/image";import Link from "next/link";import {SectionTitle} from "@/components/SectionTitle";import {ProductCard} from "@/components/ProductCard";import {HomeHero} from "@/components/HomeHero";import {products} from "@/data/products";import {services,advantages,articles} from "@/data/site";
+export default function Home(){return <><HomeHero/>
+<section className="services-section navy"><div className="wrap"><div className="split-heading"><SectionTitle eyebrow="LAYANAN KAMI" title="Layanan Komprehensif untuk Mendukung Operasional Anda" light/><p>Kami menyediakan solusi lengkap untuk kebutuhan alat berat Anda: penjualan, penyewaan, perawatan, perbaikan, dan dukungan suku cadang.</p></div><div className="service-row">{services.map((s,i)=><article className="service-item" key={s.n}><b className={i%2?"gold":""}>{s.n}</b><h3>{s.title}</h3><p>{s.text}</p></article>)}</div></div></section>
+<section className="about-home wrap section-space"><SectionTitle eyebrow="TENTANG KAMI" title="Mitra Terpercaya untuk Produktivitas Industri Indonesia"/><div className="about-copy"><p>PT Liftco Indo Perkasa adalah agen dan distributor Forklift HELI yang berpengalaman dalam bidang Material Handling Equipment dan Maintenance Building Equipment.</p><p>Didirikan pada 2011, Liftco menyediakan unit baru, rental forklift, servis dan perawatan, suku cadang, trade-in unit bekas, serta modifikasi peralatan sesuai kebutuhan operasional.</p><Link className="text-link" href="/tentang-kami">Tentang Liftco <span>→</span></Link></div><div className="about-photo"><Image src="/assets/liftco/product-range.jpg" alt="Rentang produk material handling Liftco" fill sizes="(max-width:800px) 100vw, 50vw"/></div></section>
+<section className="products-section navy section-space"><div className="wrap"><div className="section-head-inline"><SectionTitle eyebrow="PRODUK KAMI" title="Pilihan Produk untuk Kebutuhan Anda" light/><Link className="text-link yellow-link" href="/produk">Lihat Semua Produk <span>⟶</span></Link></div><div className="product-grid home-products">{products.slice(0,8).map(p=><ProductCard key={p.slug} product={p}/>)}</div></div></section>
+<section className="why-section wrap section-space"><SectionTitle eyebrow="MENGAPA KAMI" title="Alasan Memilih Liftco sebagai Mitra Bisnis Anda"/><div className="why-grid">{advantages.map((x,i)=><div className="why-item" key={x}><span>{String(i+1).padStart(2,"0")}</span><p>{x}</p></div>)}</div><div className="warranty-note">*Ketentuan garansi bervariasi menurut produk dan ketentuan unit. Hubungi tim Liftco untuk konfirmasi detail.</div></section>
+<section className="brands-section wrap section-space"><div className="section-head-inline"><SectionTitle eyebrow="BRAND PRODUK KAMI" title="Didukung Brand Peralatan Terpercaya"/></div><div className="brand-logos"><Image src="/assets/liftco/heli-brand.png" alt="HELI" width={210} height={100}/><Image src="/assets/liftco/mantall-brand.png" alt="Mantall" width={210} height={100}/><Image src="/assets/liftco/lcm-brand.png" alt="LCM" width={180} height={100}/><strong>DINGLI</strong></div></section>
+<section className="articles-section wrap section-space"><div className="section-head-inline"><SectionTitle eyebrow="ARTIKEL & EDUKASI" title="Informasi Seputar Alat Berat"/><Link className="text-link" href="/artikel">Lihat Semua Artikel <span>⟶</span></Link></div><div className="article-grid">{articles.map((a,i)=><Link href={`/artikel/${a.slug}`} className="article-card" key={a.slug}><div className={`article-image article-image-${i+1}`}><span>{a.category}</span></div><h3>{a.title}</h3><span className="text-link">Baca selengkapnya →</span></Link>)}</div></section>
+<section className="closing-cta"><div className="wrap cta-inner"><h2>Temukan Solusi Material Handling Terbaik untuk Bisnis Anda</h2><div><Link className="button button-yellow" href="/kontak">Hubungi Kami <span>→</span></Link><Link className="button button-white" href="/produk">Jelajahi Produk</Link></div></div></section></>}
